@@ -10,7 +10,8 @@ export default class MainComponent extends Component {
         super(props);
         this.state = {
             eventName: 'React Event',
-            users: []
+            users: [],
+            isFormVisible: false
         };
     }
 
@@ -26,7 +27,6 @@ export default class MainComponent extends Component {
          })
     }
 
-
     removeUser(user) {
         const users = without(this.state.users, user);
         this.setState({
@@ -34,16 +34,25 @@ export default class MainComponent extends Component {
         });
     }
 
+    toggleFormVisibility() {
+        this.setState({
+            isFormVisible: !this.state.isFormVisible
+        });
+    } 
+
     render() {
 
         const currentUsers = this.state.users;
         
         return (
-            
+
           <div>
               <div className="row mb-3">
                   <div className="col-lg-12">
-                      <AddUserForm />
+                      <AddUserForm
+                      handleToggleFormVisibility = { this.toggleFormVisibility.bind(this) }
+                      isFormVisible = { this.state.isFormVisible }
+                       />
                   </div>    
               </div>   
 
