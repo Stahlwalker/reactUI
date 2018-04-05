@@ -23,7 +23,7 @@ export default class UserCard extends Component {
                     <i className = "fa fa-envelope"/> - { email }
                 </a>
             </p>
-            <p class="card-text">
+            <p className="card-text">
                 <small className="text-muted"> { region }
                     <span className = {flagClassName}> </span>
                 </small>
