@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getUsers } from 'api/RandomUsers';
 import ISO from 'api/ISO';
 import UserCardList from 'components/UserCardList';
+import { without } from 'lodash';
 
 export default class MainComponent extends Component {
 
@@ -25,6 +26,14 @@ export default class MainComponent extends Component {
          })
     }
 
+
+    removeUser(user) {
+        const users = without(this.state.users, user);
+        this.setState({
+            users
+        });
+    }
+
     render() {
 
         const currentUsers = this.state.users;
@@ -41,6 +50,7 @@ export default class MainComponent extends Component {
                         <div className="card-columns">
                             <UserCardList
                             users = { currentUsers }
+                            handleRemoveUser = { this.removeUser.bind(this) }
                             />
                         </div>
                   </div>

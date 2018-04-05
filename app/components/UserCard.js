@@ -3,6 +3,10 @@ import ISO from 'api/ISO';
 
 export default class UserCard extends Component {
 
+    onRemoveUser() {
+        this.props.onRemoveUser(this.props.currentUser);
+    }
+
     render() {
         const {name, gender, photo, region, email, age} = this.props.user;
         const genderSign = gender === 'female' ? 'fa fa-venus' : 'fa fa-mars';
@@ -24,7 +28,7 @@ export default class UserCard extends Component {
                     <span className = {flagClassName}> </span>
                 </small>
             </p>
-            <i className = 'fa fa-remove fa-2x float-right hvr-grow'> </i>
+            <i className = 'fa fa-remove fa-2x float-right hvr-grow' onClick= {this.onRemoveUser.bind(this)}> </i>
            </div>
          </div>;
          return card;
