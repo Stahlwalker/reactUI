@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; 
 import { getUsers } from 'api/RandomUsers';
-import ISO from 'api/ISO';
 import UserCardList from 'components/UserCardList';
+import AddUserForm from 'components/AddUserForm';
 import { without } from 'lodash';
 
 export default class MainComponent extends Component {
@@ -39,12 +39,20 @@ export default class MainComponent extends Component {
         const currentUsers = this.state.users;
         
         return (
+            
           <div>
+              <div className="row mb-3">
+                  <div className="col-lg-12">
+                      <AddUserForm />
+                  </div>    
+              </div>   
+
               <div>
                 <h3>
-                    { this.state.users.length } people attend to { this.state.eventName }  
+                    { this.state.users.length } people attending to { this.state.eventName }  
                 </h3>    
               </div>  
+
               <div className="row">
                   <div className="col-lg-12">
                         <div className="card-columns">
