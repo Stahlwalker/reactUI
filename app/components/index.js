@@ -26,7 +26,7 @@ export default class MainComponent extends Component {
     }
 
     componentDidMount() {
-         getUsers(6, users => {
+         getUsers(15, users => {
              this.setState({
                  users
              });
@@ -143,6 +143,9 @@ export default class MainComponent extends Component {
                   <div className = "col-lg-6">
                     <div>
                         <h3 className = "float-right">
+                            <span className = "mr-3">
+                                { currentUsers.length <= 0 ? <i className="em em-disappointed_relieved"/> : null }
+                                </span>
                             { currentUsers.length } people attending to { this.state.eventName }  
                         </h3>    
                     </div>  
