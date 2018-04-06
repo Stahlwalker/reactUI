@@ -3,6 +3,7 @@ import { getUsers } from 'api/RandomUsers';
 import UserCardList from 'components/UserCardList';
 import AddUserForm from 'components/AddUserForm';
 import GenderSortDropdown from 'components/GenderSortDropdown';
+import SearchInput from 'components/SearchInput';
 import { without, filter } from 'lodash';
 
 export default class MainComponent extends Component {
@@ -107,6 +108,7 @@ export default class MainComponent extends Component {
                               filterBy = { this.state.filterBy }
                               />
                           </div>    
+                          <SearchInput />
                       </div>
                   </div>
                   <div className = "col-lg-6">
