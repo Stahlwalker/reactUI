@@ -11,7 +11,8 @@ export default class MainComponent extends Component {
         this.state = {
             eventName: 'React Event',
             users: [],
-            isFormVisible: false
+            isFormVisible: false,
+            selectedGender: ''
         };
     }
 
@@ -40,6 +41,12 @@ export default class MainComponent extends Component {
         });
     } 
 
+    changeSelectedGender(selectedGender) {
+        this.setState({
+            selectedGender
+        });
+    }
+
     render() {
 
         const currentUsers = this.state.users;
@@ -52,6 +59,8 @@ export default class MainComponent extends Component {
                       <AddUserForm
                       handleToggleFormVisibility = { this.toggleFormVisibility.bind(this) }
                       isFormVisible = { this.state.isFormVisible }
+                      selectedGender = {this.state.selectedGender }
+                      handleSelectedGenderChange = { this.changeSelectedGender.bind(this) }
                        />
                   </div>    
               </div>   

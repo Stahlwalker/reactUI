@@ -1,4 +1,5 @@
 import React, { Component } from 'react'; 
+import Select from 'react-select';
 
 
 export default class AddUserForm extends Component {
@@ -7,6 +8,20 @@ export default class AddUserForm extends Component {
         this.props.handleToggleFormVisibility();
     }
     
+    getGenderOptions() {
+      return [
+        { value: 'male', label: 'Male' },
+        { value: 'female', label: 'Female' }
+      ];
+    }
+
+    onSelectedGenderChange(val) {
+      const gender = val ? val.value : '';
+      console.log(gender);
+      this.props.handleSelectedGenderChange(gender);
+    }
+
+
     render() {
 
         const isFormVisible = this.props.isFormVisible;
@@ -28,10 +43,15 @@ export default class AddUserForm extends Component {
             <div className="form-group row">
                 <label htmlFor="gender" className="col-sm-2 col-form-label">Gender</label>
                 <div className="col-sm-10">
-
+                  <Select
+                    name="form-field-gender"
+                    value= { this.props.selectedGender }
+                    options={ this.getGenderOptions() }
+                    onChange={ this.onSelectedGenderChange.bind(this) }
+                    />
                 </div>
             </div>  
-
+           
 
             <div className="form-group row">
               <label htmlFor="name" className="col-sm-2 col-form-label">Name</label>
