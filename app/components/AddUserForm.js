@@ -1,6 +1,7 @@
 import React, { Component } from 'react'; 
 import Select from 'react-select';
 import CountryCodes from 'CountryCodes';
+import { getRandomPicture } from 'api/RandomUsers'; 
 
 
 export default class AddUserForm extends Component {
@@ -40,9 +41,20 @@ export default class AddUserForm extends Component {
 
     onSubmitForm(e) {
       e.preventDefault();
-      console.log(this.refs.age.value);
-      console.log(this.refs.name.value);
-      console.log(this.refs.email.value);
+      const age = this.refs.age.value.trim();
+      const name = this.refs.name.value.trim();
+      const email = this.refs.email.value.trim();
+      const region = this.props.selectedCountry.trim();
+      const gender = this.props.selectedGender.trim();
+      const photo = getRandomPicture(gender);
+
+      if(age && name && email && region && gender && photo) {
+        const user = { age, name, email, gender, photo, region }
+        this.props.handleAddUser(user);
+      }else {
+        alert('please fill all inputs');
+      }
+
     }
 
     render() {

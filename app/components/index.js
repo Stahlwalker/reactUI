@@ -54,6 +54,14 @@ export default class MainComponent extends Component {
         });
     }
 
+    addUser( user ) {
+        const users = this.state.users;
+        users.push(user);
+        this.setState({
+            users
+        });
+    }
+
     render() {
 
         const currentUsers = this.state.users;
@@ -70,6 +78,7 @@ export default class MainComponent extends Component {
                       handleSelectedGenderChange = { this.changeSelectedGender.bind(this) }
                       selectedCountry = { this.state.selectedCountry }
                       handleSelectedCountryChange = { this.changeSelectedCountry.bind(this) }
+                      handleAddUser= { this.addUser.bind(this) }
                        />
                   </div>    
               </div>   
