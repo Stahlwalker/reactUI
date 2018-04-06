@@ -16,7 +16,8 @@ export default class MainComponent extends Component {
             isFormVisible: false,
             selectedGender: '',
             selectedCountry: '',
-            filterBy: 'all'
+            filterBy: 'all',
+            query: ''
         };
     }
 
@@ -71,9 +72,35 @@ export default class MainComponent extends Component {
         });
     }
 
+    search(query) {
+        this.setState({
+            query
+        });
+    }
+
+    searchByQuery(users, query) {
+        const newUsers = [];
+        users.forEach(user => {
+            if(
+                (user.name.toLowerCase().includes(query)) ||
+                (user.region.toLowerCase().includes(query)) ||
+                (user.email.toLowerCase().includes(query)) ||
+                (user.gender.toLowerCase().includes(query)) ||
+                (user.age == query)
+            ) {
+                newUsers.push(user);
+            }
+        });
+        return newUsers;
+    }
+
     render() {
 
         let currentUsers = this.state.users;
+
+        const query = this.state.query.toLowerCase();
+
+        currentUsers = this.searchByQuery(currentUsers, query);
 
         //male | female | all
         const filterBy = this.state.filterBy;
@@ -108,7 +135,9 @@ export default class MainComponent extends Component {
                               filterBy = { this.state.filterBy }
                               />
                           </div>    
-                          <SearchInput />
+                          <SearchInput 
+                          handleSearch = { this.search.bind(this) }
+                          />
                       </div>
                   </div>
                   <div className = "col-lg-6">
