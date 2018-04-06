@@ -38,6 +38,13 @@ export default class AddUserForm extends Component {
       this.props.handleSelectedCountryChange(country);
     }
 
+    onSubmitForm(e) {
+      e.preventDefault();
+      console.log(this.refs.age.value);
+      console.log(this.refs.name.value);
+      console.log(this.refs.email.value);
+    }
+
     render() {
 
         const isFormVisible = this.props.isFormVisible;
@@ -54,7 +61,7 @@ export default class AddUserForm extends Component {
               <i className = { addOrMinusSign } onClick = { this.onToggleFormVisibility.bind(this) } > </i> { hideOrAddUserText }  
 
             <div style = { formStyle } className="col-lg-12 addUserSection">
-             <form>
+             <form onSubmit = { this.onSubmitForm.bind(this) }>
 
             <div className="form-group row">
                 <label htmlFor="gender" className="col-sm-2 col-form-label">Gender</label>
@@ -72,21 +79,21 @@ export default class AddUserForm extends Component {
             <div className="form-group row">
               <label htmlFor="name" className="col-sm-2 col-form-label">Name</label>
               <div className="col-sm-10">
-                <input type="text" className="form-control" id="name" placeholder="Name" autoComplete = "off" />
+                <input type="text" className="form-control" id="name" placeholder="Name" autoComplete = "off" ref='name' />
               </div>
             </div>
 
             <div className="form-group row">
               <label htmlFor="phone" className="col-sm-2 col-form-label">Email</label>
               <div className="col-sm-10">
-                <input type="text" className="form-control" id="email" placeholder="Email" autoComplete = "off" />
+                <input type="text" className="form-control" id="email" placeholder="Email" autoComplete = "off" ref='email' />
               </div>
             </div>
 
             <div className="form-group row">
               <label htmlFor="age" className="col-sm-2 col-form-label">Age</label>
               <div className="col-sm-10">
-                <input type="number" className="form-control" id="age" placeholder="Age" autoComplete = "off" />
+                <input type="number" className="form-control" id="age" placeholder="Age" autoComplete = "off"  ref='age' />
               </div>
             </div>
 
