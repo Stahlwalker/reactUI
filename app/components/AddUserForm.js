@@ -51,10 +51,22 @@ export default class AddUserForm extends Component {
       if(age && name && email && region && gender && photo) {
         const user = { age, name, email, gender, photo, region }
         this.props.handleAddUser(user);
+        this.resetFields();
       }else {
         alert('please fill all inputs');
       }
 
+    }
+
+    resetFields(e) {
+      if(e) {
+        e.preventDefault();
+      }
+      this.onSelectedCountryChange();
+      this.onSelectedGenderChange();
+      this.refs.name.value = '';
+      this.refs.email.value = '';
+      this.refs.age.value = '';
     }
 
     render() {
@@ -122,7 +134,7 @@ export default class AddUserForm extends Component {
             </div>
 
             <input className="btn btn-secondary mr-3" type="submit" value="Submit" />
-            <button className="btn btn-secondary">Clear Fields</button>
+            <button onClick = { this.resetFields.bind(this) } className="btn btn-secondary">Clear Fields</button>
          </form>
       </div>
       
