@@ -12,7 +12,8 @@ export default class MainComponent extends Component {
             eventName: 'React Event',
             users: [],
             isFormVisible: false,
-            selectedGender: ''
+            selectedGender: '',
+            selectedCountry: ''
         };
     }
 
@@ -46,6 +47,12 @@ export default class MainComponent extends Component {
             selectedGender
         });
     }
+    
+    changeSelectedCountry(selectedCountry) {
+        this.setState({
+            selectedCountry
+        });
+    }
 
     render() {
 
@@ -61,6 +68,8 @@ export default class MainComponent extends Component {
                       isFormVisible = { this.state.isFormVisible }
                       selectedGender = {this.state.selectedGender }
                       handleSelectedGenderChange = { this.changeSelectedGender.bind(this) }
+                      selectedCountry = { this.state.selectedCountry }
+                      handleSelectedCountryChange = { this.changeSelectedCountry.bind(this) }
                        />
                   </div>    
               </div>   

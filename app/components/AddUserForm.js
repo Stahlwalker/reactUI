@@ -1,5 +1,6 @@
 import React, { Component } from 'react'; 
 import Select from 'react-select';
+import CountryCodes from 'CountryCodes';
 
 
 export default class AddUserForm extends Component {
@@ -21,6 +22,21 @@ export default class AddUserForm extends Component {
       this.props.handleSelectedGenderChange(gender);
     }
 
+    getCountrySelectOptions() {
+      const options = [];
+      for( const country in CountryCodes ) {
+        options.push({
+          value: country,
+          label: country
+        })
+      }
+      return options;
+    }
+
+    onSelectedCountryChange(val) {
+      const country = val ? val.value : '';
+      this.props.handleSelectedCountryChange(country);
+    }
 
     render() {
 
@@ -77,6 +93,12 @@ export default class AddUserForm extends Component {
             <div className="form-group row">
               <label htmlFor="region" className="col-sm-2 col-form-label">Region</label>
               <div className="col-sm-10">
+                <Select 
+                  name="form-field-country"
+                  value= { this.props.selectedCountry }
+                  options= { this.getCountrySelectOptions() }
+                  onChange= { this.onSelectedCountryChange.bind(this) }
+                  />
               </div>
             </div>
 
